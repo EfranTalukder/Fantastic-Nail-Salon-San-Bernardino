@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,6 +21,8 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 180px;
     }
+
+    h1, h2, h3, h4 { font-family: 'Outfit', system-ui, sans-serif; }
 
     /* NAV */
     #nav {
@@ -38,10 +40,10 @@
     }
     .nav-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { text-decoration: none; line-height: 1; }
-    .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: #1a1714; letter-spacing: 0.04em; display: block; }
-    .nav-logo-sub { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: #C07840; font-weight: 600; display: block; margin-top: 1px; }
+    .nav-logo-main { font-size: 1.4rem; font-weight: 800; color: #1a1714; letter-spacing: -0.02em; display: block; }
+    .nav-logo-sub { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: #C07840; font-weight: 700; display: block; margin-top: 3px; }
     .nav-links { display: flex; align-items: center; gap: 2.25rem; }
-    .nav-link { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: #7A6960; text-decoration: none; position: relative; transition: color 0.25s; }
+    .nav-link { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: #7A6960; text-decoration: none; position: relative; transition: color 0.25s; }
     .nav-link::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: #C07840; transition: width 0.3s cubic-bezier(0.16,1,0.3,1); }
     .nav-link:hover, .nav-link.active { color: #1a1714; }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
@@ -68,6 +70,8 @@
     .marquee-track { display: flex; width: max-content; animation: mq 30s linear infinite; }
     .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
     @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .mq-item { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #EAD0B8; }
+    .mq-item.accent { color: #C07840; }
 
     /* IMAGE ZOOM */
     .img-z { overflow: hidden; }
@@ -78,15 +82,40 @@
     .svc-row { border-bottom: 1px solid rgba(192,120,64,0.16); padding: 1.25rem 0; transition: padding-left 0.3s; cursor: default; }
     .svc-row:hover { padding-left: 0.6rem; }
 
-    /* TESTIMONIAL SCROLL */
-    .testi-scroll { display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; }
-    .testi-scroll::-webkit-scrollbar { display: none; }
-    .testi-card { flex: 0 0 320px; background: #fff; border: 1px solid rgba(192,120,64,0.14); border-radius: 4px; padding: 1.875rem; box-shadow: 0 6px 32px rgba(101,62,24,0.06); }
+    /* SECTION HEADINGS */
+    .h-display { font-weight: 800; line-height: 1.04; letter-spacing: -0.035em; color: #1a1714; }
+    .h-display .accent { color: #C07840; }
+    .eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #C07840; font-weight: 700; }
+
+    /* GOOGLE REVIEW CARDS */
+    .g-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px; padding: 1.75rem;
+      box-shadow: 0 6px 24px rgba(101,62,24,0.05);
+      display: flex; flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+    }
+    .g-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(101,62,24,0.1); }
+    .g-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .g-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: #fff; flex-shrink: 0; }
+    .g-name { font-size: 0.9rem; font-weight: 700; color: #1a1714; }
+    .g-date { font-size: 0.78rem; font-weight: 400; color: #7A6960; margin-top: 1px; }
+    .g-logo { margin-left: auto; flex-shrink: 0; }
+    .g-stars { display: flex; gap: 1px; margin-bottom: 0.75rem; }
+    .g-quote { font-size: 0.95rem; line-height: 1.65; color: #2a231d; font-weight: 400; }
+    .g-summary {
+      display: inline-flex; align-items: center; gap: 0.875rem;
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      padding: 0.875rem 1.25rem; border-radius: 10px;
+      box-shadow: 0 6px 24px rgba(101,62,24,0.06);
+    }
 
     /* MOBILE MENU */
     #mob-menu { display: none; position: fixed; inset: 0; z-index: 45; background: #F9F6F2; padding: 6rem 2rem 2rem; flex-direction: column; }
     #mob-menu.open { display: flex; }
     body.no-scroll { overflow: hidden; }
+    .mob-link { font-size: 2rem; font-weight: 800; color: #1a1714; text-decoration: none; letter-spacing: -0.02em; }
+    .mob-link:hover { color: #C07840; }
 
     /* MOBILE */
     @media (max-width: 767px) {
@@ -100,7 +129,7 @@
       #phil-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
       #gal-grid { grid-template-columns: 1fr 1fr !important; }
       #foot-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
-      .testi-card { flex: 0 0 88vw; }
+      #g-grid { grid-template-columns: 1fr !important; }
       section { padding-left: 5vw !important; padding-right: 5vw !important; }
     }
     @media (max-width: 480px) {
@@ -140,12 +169,12 @@
 
 <!-- MOBILE MENU -->
 <div id="mob-menu">
-  <div style="display:flex;flex-direction:column;gap:2rem;flex:1;">
-    <a href="index.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:500;color:#1a1714;text-decoration:none;">Home</a>
-    <a href="about.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:500;color:#1a1714;text-decoration:none;">About</a>
-    <a href="services.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:500;color:#1a1714;text-decoration:none;">Services</a>
-    <a href="gallery.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:500;color:#1a1714;text-decoration:none;">Gallery</a>
-    <a href="contact.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:500;color:#1a1714;text-decoration:none;">Contact</a>
+  <div style="display:flex;flex-direction:column;gap:1.5rem;flex:1;">
+    <a href="index.html" class="mob-link">Home</a>
+    <a href="about.html" class="mob-link">About</a>
+    <a href="services.html" class="mob-link">Services</a>
+    <a href="gallery.html" class="mob-link">Gallery</a>
+    <a href="contact.html" class="mob-link">Contact</a>
   </div>
   <div style="border-top:1px solid rgba(192,120,64,0.2);padding-top:1.75rem;">
     <a href="tel:+19098867123" class="btn-call" style="font-size:1rem;padding:1rem 1.75rem;">Call to Book · (909) 886-7123</a>
@@ -154,18 +183,17 @@
 
 <!-- HERO -->
 <section id="hero" style="display:grid;grid-template-columns:1fr 1fr;min-height:100dvh;overflow:hidden;">
-  <!-- Left -->
   <div id="hero-left" style="display:flex;flex-direction:column;justify-content:center;padding:9rem 4rem 5rem 5vw;position:relative;z-index:2;">
     <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:2.25rem;" class="rev">
       <div style="width:32px;height:1px;background:#C07840;"></div>
-      <span style="font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:#C07840;font-weight:700;">San Bernardino, CA · Est. Since</span>
+      <span class="eyebrow">San Bernardino, CA · Open 7 Days</span>
     </div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.75rem,4.5vw,5rem);font-weight:400;line-height:1.06;letter-spacing:-0.02em;color:#1a1714;margin-bottom:1.75rem;text-wrap:balance;" class="rev rev-d1">
+    <h1 class="h-display rev rev-d1" style="font-size:clamp(2.75rem,5.4vw,5.5rem);margin-bottom:1.75rem;text-wrap:balance;">
       The Nail Salon<br/>
-      <em style="font-style:italic;">San Bernardino</em><br/>
+      <span class="accent">San Bernardino</span><br/>
       Keeps Coming Back To
     </h1>
-    <p style="font-size:1rem;line-height:1.75;color:#4A3D35;max-width:40ch;margin-bottom:2.75rem;font-weight:400;" class="rev rev-d2">
+    <p style="font-size:1.0625rem;line-height:1.7;color:#4A3D35;max-width:42ch;margin-bottom:2.75rem;font-weight:400;" class="rev rev-d2">
       174 five-star reviews and counting. Precision technique, a beautifully reimagined interior, and technicians who care about your nails long after you walk out the door.
     </p>
     <div style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;" class="rev rev-d3">
@@ -173,23 +201,25 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call to Reserve
       </a>
-      <a href="services.html" style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#1a1714;text-decoration:none;border-bottom:1px solid rgba(26,23,20,0.35);padding-bottom:2px;font-weight:600;transition:color 0.25s,border-color 0.25s;" onmouseover="this.style.color='#C07840';this.style.borderColor='#C07840'" onmouseout="this.style.color='#1a1714';this.style.borderColor='rgba(26,23,20,0.35)'">View Services</a>
+      <a href="services.html" style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#1a1714;text-decoration:none;border-bottom:1px solid rgba(26,23,20,0.35);padding-bottom:2px;font-weight:700;transition:color 0.25s,border-color 0.25s;" onmouseover="this.style.color='#C07840';this.style.borderColor='#C07840'" onmouseout="this.style.color='#1a1714';this.style.borderColor='rgba(26,23,20,0.35)'">View Services</a>
     </div>
-    <!-- Rating -->
-    <div style="margin-top:3rem;display:inline-flex;align-items:center;gap:0.875rem;padding:0.875rem 1.375rem;background:rgba(255,255,255,0.82);border:1px solid rgba(192,120,64,0.18);border-radius:4px;backdrop-filter:blur(8px);width:fit-content;" class="rev rev-d3">
-      <div style="display:flex;gap:2px;">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <!-- Google rating -->
+    <div style="margin-top:3rem;display:inline-flex;align-items:center;gap:0.875rem;padding:0.875rem 1.375rem;background:rgba(255,255,255,0.92);border:1px solid rgba(0,0,0,0.08);border-radius:10px;backdrop-filter:blur(8px);width:fit-content;box-shadow:0 6px 24px rgba(101,62,24,0.06);" class="rev rev-d3">
+      <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#4285f4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34a853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#fbbc04" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#ea4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+      <div style="display:flex;align-items:center;gap:5px;">
+        <span style="font-size:1rem;font-weight:800;color:#1a1714;">4.5</span>
+        <div style="display:flex;gap:1px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
       </div>
-      <span style="font-size:0.9rem;font-weight:700;color:#1a1714;">4.5</span>
-      <span style="color:rgba(26,23,20,0.2);font-size:0.75rem;">|</span>
-      <span style="font-size:0.825rem;color:#4A3D35;font-weight:500;">174 Google reviews</span>
+      <span style="color:rgba(26,23,20,0.18);font-size:0.75rem;">|</span>
+      <span style="font-size:0.825rem;color:#4A3D35;font-weight:600;">174 Google reviews</span>
     </div>
   </div>
-  <!-- Right image -->
   <div id="hero-img" style="position:relative;overflow:hidden;">
     <img src="https://images.pexels.com/photos/2268404/pexels-photo-2268404.jpeg?auto=compress&cs=tinysrgb&w=1260" alt="Elegantly manicured nails with gold rings" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
     <div class="hero-blend" style="position:absolute;inset:0;background:linear-gradient(to right,#F9F6F2 0%,transparent 18%);"></div>
@@ -201,39 +231,39 @@
 <div class="marquee-wrap">
   <div class="marquee-track">
     <div style="display:flex;align-items:center;gap:2.5rem;padding-right:2.5rem;white-space:nowrap;">
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Gel Manicure</span>
+      <span class="mq-item accent">Gel Manicure</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">Pedicure</span>
+      <span class="mq-item">Pedicure</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Acrylic Full Set</span>
+      <span class="mq-item accent">Acrylic Full Set</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">French Tips</span>
+      <span class="mq-item">French Tips</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Nail Art</span>
+      <span class="mq-item accent">Nail Art</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">Callus Removal</span>
+      <span class="mq-item">Callus Removal</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Eyebrow Waxing</span>
+      <span class="mq-item accent">Eyebrow Waxing</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">Ombré &amp; 3D Art</span>
+      <span class="mq-item">Ombré &amp; 3D Art</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
     </div>
     <div style="display:flex;align-items:center;gap:2.5rem;padding-right:2.5rem;white-space:nowrap;">
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Gel Manicure</span>
+      <span class="mq-item accent">Gel Manicure</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">Pedicure</span>
+      <span class="mq-item">Pedicure</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Acrylic Full Set</span>
+      <span class="mq-item accent">Acrylic Full Set</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">French Tips</span>
+      <span class="mq-item">French Tips</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Nail Art</span>
+      <span class="mq-item accent">Nail Art</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">Callus Removal</span>
+      <span class="mq-item">Callus Removal</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#C07840;font-style:italic;">Eyebrow Waxing</span>
+      <span class="mq-item accent">Eyebrow Waxing</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:0.1em;color:#EAD0B8;">Ombré &amp; 3D Art</span>
+      <span class="mq-item">Ombré &amp; 3D Art</span>
       <span style="color:rgba(192,120,64,0.4);font-size:0.4rem;">&#9670;</span>
     </div>
   </div>
@@ -243,78 +273,76 @@
 <section style="padding:7.5rem 5vw;">
   <div style="max-width:1400px;margin:0 auto;">
     <div id="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
-      <!-- Left -->
       <div>
         <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:1.75rem;" class="rev">
           <div style="width:32px;height:1px;background:#C07840;"></div>
-          <span style="font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:#C07840;font-weight:700;">What We Do</span>
+          <span class="eyebrow">What We Do</span>
         </div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.25vw,3.25rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#1a1714;margin-bottom:1.25rem;text-wrap:balance;" class="rev rev-d1">
-          Every service,<br/><em>done with intention</em>
+        <h2 class="h-display rev rev-d1" style="font-size:clamp(2rem,3.5vw,3.5rem);margin-bottom:1.25rem;text-wrap:balance;">
+          Every service,<br/><span class="accent">done with intention</span>
         </h2>
-        <p style="font-size:1rem;line-height:1.78;color:#4A3D35;max-width:44ch;margin-bottom:2.75rem;font-weight:400;" class="rev rev-d2">
+        <p style="font-size:1.0625rem;line-height:1.75;color:#4A3D35;max-width:46ch;margin-bottom:2.75rem;font-weight:400;" class="rev rev-d2">
           We don't rush. Every appointment gets full attention from prep to polish — because the difference shows, and so does the longevity.
         </p>
         <div class="rev rev-d2">
           <div class="svc-row">
             <div style="display:flex;justify-content:space-between;align-items:center;">
               <div>
-                <div style="font-size:1rem;font-weight:600;color:#1a1714;">Gel Manicure</div>
-                <div style="font-size:0.825rem;color:#7A6960;margin-top:3px;font-weight:400;">Long-wearing, chip-free color — up to 3 weeks</div>
+                <div style="font-size:1.0625rem;font-weight:700;color:#1a1714;">Gel Manicure</div>
+                <div style="font-size:0.875rem;color:#7A6960;margin-top:4px;font-weight:400;">Long-wearing, chip-free color — up to 3 weeks</div>
               </div>
-              <span style="font-size:0.875rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:700;">From $35</span>
+              <span style="font-size:0.95rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:800;">From $35</span>
             </div>
           </div>
           <div class="svc-row">
             <div style="display:flex;justify-content:space-between;align-items:center;">
               <div>
-                <div style="font-size:1rem;font-weight:600;color:#1a1714;">Acrylic Full Set</div>
-                <div style="font-size:0.825rem;color:#7A6960;margin-top:3px;font-weight:400;">Sculpted extensions — your shape, your length, zero lifting</div>
+                <div style="font-size:1.0625rem;font-weight:700;color:#1a1714;">Acrylic Full Set</div>
+                <div style="font-size:0.875rem;color:#7A6960;margin-top:4px;font-weight:400;">Sculpted extensions — your shape, your length, zero lifting</div>
               </div>
-              <span style="font-size:0.875rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:700;">From $45</span>
+              <span style="font-size:0.95rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:800;">From $45</span>
             </div>
           </div>
           <div class="svc-row">
             <div style="display:flex;justify-content:space-between;align-items:center;">
               <div>
-                <div style="font-size:1rem;font-weight:600;color:#1a1714;">Callus Removal Pedicure</div>
-                <div style="font-size:0.825rem;color:#7A6960;margin-top:3px;font-weight:400;">Deep soak, full callus treatment, massage, polish</div>
+                <div style="font-size:1.0625rem;font-weight:700;color:#1a1714;">Callus Removal Pedicure</div>
+                <div style="font-size:0.875rem;color:#7A6960;margin-top:4px;font-weight:400;">Deep soak, full callus treatment, massage, polish</div>
               </div>
-              <span style="font-size:0.875rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:700;">From $45</span>
+              <span style="font-size:0.95rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:800;">From $45</span>
             </div>
           </div>
           <div class="svc-row">
             <div style="display:flex;justify-content:space-between;align-items:center;">
               <div>
-                <div style="font-size:1rem;font-weight:600;color:#1a1714;">French Tip Gel Pedicure</div>
-                <div style="font-size:0.825rem;color:#7A6960;margin-top:3px;font-weight:400;">Classic French with a gel finish that holds</div>
+                <div style="font-size:1.0625rem;font-weight:700;color:#1a1714;">French Tip Gel Pedicure</div>
+                <div style="font-size:0.875rem;color:#7A6960;margin-top:4px;font-weight:400;">Classic French with a gel finish that holds</div>
               </div>
-              <span style="font-size:0.875rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:700;">$57</span>
+              <span style="font-size:0.95rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:800;">$57</span>
             </div>
           </div>
           <div style="padding:1.25rem 0;">
             <div style="display:flex;justify-content:space-between;align-items:center;">
               <div>
-                <div style="font-size:1rem;font-weight:600;color:#1a1714;">Nail Art &amp; 3D Design</div>
-                <div style="font-size:0.825rem;color:#7A6960;margin-top:3px;font-weight:400;">Florals, ombré, geometric — bring your reference photo</div>
+                <div style="font-size:1.0625rem;font-weight:700;color:#1a1714;">Nail Art &amp; 3D Design</div>
+                <div style="font-size:0.875rem;color:#7A6960;margin-top:4px;font-weight:400;">Florals, ombré, geometric — bring your reference photo</div>
               </div>
-              <span style="font-size:0.875rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:700;">Custom</span>
+              <span style="font-size:0.95rem;color:#C07840;white-space:nowrap;margin-left:1rem;font-weight:800;">Custom</span>
             </div>
           </div>
         </div>
-        <a href="services.html" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:2rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#1a1714;text-decoration:none;border-bottom:1px solid rgba(26,23,20,0.28);padding-bottom:2px;font-weight:600;transition:color 0.25s,border-color 0.25s;" onmouseover="this.style.color='#C07840';this.style.borderColor='#C07840'" onmouseout="this.style.color='#1a1714';this.style.borderColor='rgba(26,23,20,0.28)'" class="rev rev-d3">
+        <a href="services.html" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:2rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#1a1714;text-decoration:none;border-bottom:1px solid rgba(26,23,20,0.28);padding-bottom:2px;font-weight:700;transition:color 0.25s,border-color 0.25s;" onmouseover="this.style.color='#C07840';this.style.borderColor='#C07840'" onmouseout="this.style.color='#1a1714';this.style.borderColor='rgba(26,23,20,0.28)'" class="rev rev-d3">
           Full services &amp; pricing
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-      <!-- Right: image with floating stat -->
       <div style="position:relative;padding-top:2rem;" class="rev rev-d1">
         <div class="img-z" style="border-radius:4px;aspect-ratio:4/5;">
           <img src="https://images.pexels.com/photos/7755296/pexels-photo-7755296.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Professional manicure in progress" />
         </div>
-        <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:#fff;border:1px solid rgba(192,120,64,0.18);padding:1.375rem 1.625rem;border-radius:4px;box-shadow:0 14px 40px rgba(101,62,24,0.12);">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:2.25rem;font-weight:500;color:#1a1714;line-height:1;">174+</div>
-          <div style="font-size:0.8rem;color:#4A3D35;margin-top:3px;letter-spacing:0.04em;font-weight:500;">Happy clients on Google</div>
+        <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:#fff;border:1px solid rgba(192,120,64,0.18);padding:1.375rem 1.625rem;border-radius:8px;box-shadow:0 14px 40px rgba(101,62,24,0.12);">
+          <div style="font-size:2.25rem;font-weight:800;color:#1a1714;line-height:1;letter-spacing:-0.03em;">174+</div>
+          <div style="font-size:0.78rem;color:#4A3D35;margin-top:6px;letter-spacing:0.04em;font-weight:600;">Happy clients on Google</div>
         </div>
       </div>
     </div>
@@ -325,29 +353,37 @@
 <section style="background:#1a1714;padding:7.5rem 5vw;overflow:hidden;">
   <div style="max-width:1400px;margin:0 auto;">
     <div id="phil-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
-      <!-- Image left -->
       <div style="position:relative;" class="rev">
         <div class="img-z" style="border-radius:4px;aspect-ratio:3/4;">
           <img src="https://images.pexels.com/photos/4783335/pexels-photo-4783335.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Nail technician applying polish with care" />
         </div>
-        <div style="position:absolute;top:2rem;right:-1.25rem;background:#C07840;color:#fff;padding:1.375rem;border-radius:4px;max-width:160px;text-align:center;">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-style:italic;line-height:1.55;font-weight:400;">"Tell them what you want and they deliver — amazing results every time"</p>
-          <p style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:0.625rem;opacity:0.85;font-weight:600;">— Google Review</p>
+        <div style="position:absolute;top:2rem;right:-1.25rem;background:#fff;color:#1a1714;padding:1.25rem 1.375rem;border-radius:10px;max-width:240px;box-shadow:0 18px 40px rgba(0,0,0,0.35);">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.625rem;">
+            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#4285f4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34a853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#fbbc04" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#ea4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+            <div style="display:flex;gap:1px;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <p style="font-size:0.875rem;line-height:1.55;font-weight:500;color:#1a1714;">"Tell them what you want and they deliver — amazing results every time."</p>
+          <p style="font-size:0.7rem;letter-spacing:0.04em;margin-top:0.625rem;color:#7A6960;font-weight:600;">— Verified Google review</p>
         </div>
       </div>
-      <!-- Text right -->
       <div>
         <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:1.75rem;" class="rev">
           <div style="width:32px;height:1px;background:#C07840;"></div>
-          <span style="font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:#C07840;font-weight:700;">Our Standard</span>
+          <span class="eyebrow">Our Standard</span>
         </div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.25vw,3.25rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#F9F6F2;margin-bottom:1.5rem;text-wrap:balance;" class="rev rev-d1">
-          Good nails take<br/><em>the time they take</em>
+        <h2 class="h-display rev rev-d1" style="font-size:clamp(2rem,3.5vw,3.5rem);color:#F9F6F2;margin-bottom:1.5rem;text-wrap:balance;">
+          Good nails take<br/><span class="accent">the time they take</span>
         </h2>
-        <p style="font-size:1rem;line-height:1.8;color:rgba(249,246,242,0.7);margin-bottom:1.25rem;max-width:46ch;font-weight:400;" class="rev rev-d2">
+        <p style="font-size:1.0625rem;line-height:1.8;color:rgba(249,246,242,0.72);margin-bottom:1.25rem;max-width:48ch;font-weight:400;" class="rev rev-d2">
           Under new ownership, Fantastic Nail Salon has been completely reimagined — the interior, the process, the standard of work. We invested in the space because your experience before the first stroke of polish matters.
         </p>
-        <p style="font-size:1rem;line-height:1.8;color:rgba(249,246,242,0.7);margin-bottom:2.75rem;max-width:46ch;font-weight:400;" class="rev rev-d2">
+        <p style="font-size:1.0625rem;line-height:1.8;color:rgba(249,246,242,0.72);margin-bottom:2.75rem;max-width:48ch;font-weight:400;" class="rev rev-d2">
           Our clients drive here from across San Bernardino County — not because we're the closest, but because once you've had your nails done right, you don't want to settle for anything less.
         </p>
         <a href="about.html" style="display:inline-flex;align-items:center;gap:0.6rem;background:transparent;border:1px solid rgba(192,120,64,0.45);color:#C07840;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;padding:0.875rem 1.625rem;border-radius:2px;text-decoration:none;transition:all 0.25s;" onmouseover="this.style.background='#C07840';this.style.color='#fff';this.style.borderColor='#C07840'" onmouseout="this.style.background='transparent';this.style.color='#C07840';this.style.borderColor='rgba(192,120,64,0.45)'" class="rev rev-d3">
@@ -359,89 +395,122 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section style="padding:7.5rem 0;">
-  <div style="max-width:1400px;margin:0 auto;padding:0 5vw;margin-bottom:3rem;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
-      <div>
-        <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:1.25rem;" class="rev">
-          <div style="width:32px;height:1px;background:#C07840;"></div>
-          <span style="font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:#C07840;font-weight:700;">Client Words</span>
-        </div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.875rem,2.75vw,2.75rem);font-weight:400;color:#1a1714;letter-spacing:-0.02em;" class="rev rev-d1">What our clients say</h2>
+<!-- TESTIMONIALS / GOOGLE REVIEWS -->
+<section style="padding:7.5rem 5vw;background:#F9F6F2;">
+  <div style="max-width:1400px;margin:0 auto;">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:3.5rem;">
+      <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:1.25rem;" class="rev">
+        <div style="width:32px;height:1px;background:#C07840;"></div>
+        <span class="eyebrow">Client Words</span>
+        <div style="width:32px;height:1px;background:#C07840;"></div>
       </div>
-      <span style="font-size:0.825rem;color:#4A3D35;letter-spacing:0.04em;font-weight:500;" class="rev">4.5 stars · 174 reviews</span>
+      <h2 class="h-display rev rev-d1" style="font-size:clamp(2rem,3.25vw,3.25rem);margin-bottom:2rem;">
+        What our clients say
+      </h2>
+      <!-- Google rating summary widget -->
+      <div class="g-summary rev rev-d2">
+        <svg width="32" height="32" viewBox="0 0 48 48"><path fill="#4285f4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34a853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#fbbc04" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#ea4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+        <div style="text-align:left;">
+          <div style="font-size:0.75rem;font-weight:600;color:#7A6960;letter-spacing:0.04em;">Rated on Google</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+            <span style="font-size:1.125rem;font-weight:800;color:#1a1714;">4.5</span>
+            <div style="display:flex;gap:1px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span style="font-size:0.825rem;color:#4A3D35;font-weight:500;margin-left:4px;">· 174 reviews</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div style="padding:0 5vw;">
-    <div class="testi-scroll rev">
-      <div class="testi-card">
-        <div style="display:flex;gap:2px;margin-bottom:1.25rem;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;line-height:1.65;color:#1a1714;margin-bottom:1.5rem;font-weight:400;">"I love this place — super clean and the staff is amazing. The calm environment and the great prices make it my go-to. Won't go anywhere else."</p>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div style="width:36px;height:36px;border-radius:50%;background:#F2D4BC;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:#C07840;font-weight:600;">N</div>
-          <div>
-            <div style="font-size:0.875rem;font-weight:600;color:#1a1714;">Naomi D.</div>
-            <div style="font-size:0.75rem;color:#7A6960;font-weight:400;">Google Review</div>
+
+    <div id="g-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;" class="rev rev-d2">
+      <!-- Card 1 -->
+      <div class="g-card">
+        <div class="g-card-header">
+          <div class="g-avatar" style="background:#7B4FB8;">N</div>
+          <div style="flex:1;">
+            <div class="g-name">Naomi D.</div>
+            <div class="g-date">2 weeks ago</div>
+          </div>
+          <div class="g-logo">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285f4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34a853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#fbbc04" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#ea4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
           </div>
         </div>
+        <div class="g-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="g-quote">I love this place — super clean and the staff is amazing. The calm environment and the great prices make it my go-to. Won't go anywhere else.</p>
       </div>
-      <div class="testi-card" style="background:#C07840;border-color:#C07840;">
-        <div style="display:flex;gap:2px;margin-bottom:1.25rem;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;line-height:1.65;color:#fff;margin-bottom:1.5rem;font-weight:400;">"I've been coming to Wee and Kim for years and followed them here. Just tell them what you want — they will deliver amazing results, great prices, fantastic service every single time."</p>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:#fff;font-weight:600;">W</div>
-          <div>
-            <div style="font-size:0.875rem;font-weight:600;color:#fff;">W. Walker</div>
-            <div style="font-size:0.75rem;color:rgba(255,255,255,0.75);font-weight:400;">Long-time Client</div>
+      <!-- Card 2 -->
+      <div class="g-card">
+        <div class="g-card-header">
+          <div class="g-avatar" style="background:#2A9D8F;">W</div>
+          <div style="flex:1;">
+            <div class="g-name">W. Walker</div>
+            <div class="g-date">1 month ago</div>
+          </div>
+          <div class="g-logo">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285f4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34a853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#fbbc04" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#ea4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
           </div>
         </div>
+        <div class="g-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="g-quote">I've been coming to Wee and Kim for years and followed them here. Just tell them what you want — they will deliver amazing results, great prices, fantastic service.</p>
       </div>
-      <div class="testi-card">
-        <div style="display:flex;gap:2px;margin-bottom:1.25rem;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;line-height:1.65;color:#1a1714;margin-bottom:1.5rem;font-weight:400;">"$57 for French tip gel toes with callus removal pedicure — and my feet feel incredible. Under new management and the inside looks beautiful now. This is my place."</p>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div style="width:36px;height:36px;border-radius:50%;background:#F2D4BC;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:#C07840;font-weight:600;">N</div>
-          <div>
-            <div style="font-size:0.875rem;font-weight:600;color:#1a1714;">Naomis Dream</div>
-            <div style="font-size:0.75rem;color:#7A6960;font-weight:400;">Google · 3 months ago</div>
+      <!-- Card 3 -->
+      <div class="g-card">
+        <div class="g-card-header">
+          <div class="g-avatar" style="background:#D9645E;">N</div>
+          <div style="flex:1;">
+            <div class="g-name">Naomis Dream</div>
+            <div class="g-date">3 months ago</div>
+          </div>
+          <div class="g-logo">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285f4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34a853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#fbbc04" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#ea4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
           </div>
         </div>
+        <div class="g-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="g-quote">$57 for French tip gel toes with callus removal pedicure — and my feet feel incredible. Under new management and the inside looks beautiful. This is my place.</p>
       </div>
-      <div class="testi-card">
-        <div style="display:flex;gap:2px;margin-bottom:1.25rem;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C07840"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;line-height:1.65;color:#1a1714;margin-bottom:1.5rem;font-weight:400;">"Great price and excellent service. The attention to detail is real — not rushed, not generic. My nails looked exactly how I imagined, and they lasted weeks."</p>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div style="width:36px;height:36px;border-radius:50%;background:#F2D4BC;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:#C07840;font-weight:600;">R</div>
-          <div>
-            <div style="font-size:0.875rem;font-weight:600;color:#1a1714;">Rachel M.</div>
-            <div style="font-size:0.75rem;color:#7A6960;font-weight:400;">Google Review</div>
+      <!-- Card 4 -->
+      <div class="g-card">
+        <div class="g-card-header">
+          <div class="g-avatar" style="background:#3B6BB0;">R</div>
+          <div style="flex:1;">
+            <div class="g-name">Rachel M.</div>
+            <div class="g-date">5 months ago</div>
+          </div>
+          <div class="g-logo">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285f4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34a853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#fbbc04" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#ea4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
           </div>
         </div>
+        <div class="g-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC04"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="g-quote">Great price and excellent service. The attention to detail is real — not rushed, not generic. My nails looked exactly how I imagined, and they lasted weeks.</p>
       </div>
     </div>
   </div>
@@ -451,8 +520,8 @@
 <section style="padding:0 5vw 7.5rem;">
   <div style="max-width:1400px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;">
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.875rem,2.75vw,2.75rem);font-weight:400;color:#1a1714;letter-spacing:-0.02em;" class="rev">Recent Work</h2>
-      <a href="gallery.html" style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#4A3D35;text-decoration:none;border-bottom:1px solid rgba(74,61,53,0.3);padding-bottom:2px;font-weight:600;transition:color 0.25s,border-color 0.25s;" onmouseover="this.style.color='#C07840';this.style.borderColor='#C07840'" onmouseout="this.style.color='#4A3D35';this.style.borderColor='rgba(74,61,53,0.3)'" class="rev">View full gallery</a>
+      <h2 class="h-display rev" style="font-size:clamp(1.875rem,2.75vw,2.75rem);">Recent Work</h2>
+      <a href="gallery.html" style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#4A3D35;text-decoration:none;border-bottom:1px solid rgba(74,61,53,0.3);padding-bottom:2px;font-weight:700;transition:color 0.25s,border-color 0.25s;" onmouseover="this.style.color='#C07840';this.style.borderColor='#C07840'" onmouseout="this.style.color='#4A3D35';this.style.borderColor='rgba(74,61,53,0.3)'" class="rev">View full gallery</a>
     </div>
     <div id="gal-grid" style="display:grid;grid-template-columns:1.65fr 1fr 1fr;grid-template-rows:auto auto;gap:0.75rem;" class="rev rev-d1">
       <div class="img-z" style="grid-row:span 2;border-radius:4px;aspect-ratio:3/4;"><img src="https://images.pexels.com/photos/4965824/pexels-photo-4965824.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Nail art design" /></div>
@@ -468,21 +537,21 @@
 <section style="background:#EDE3D8;padding:7rem 5vw;text-align:center;position:relative;overflow:hidden;">
   <div style="position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(192,120,64,0.15);pointer-events:none;"></div>
   <div style="position:absolute;bottom:-100px;left:-60px;width:380px;height:380px;border-radius:50%;border:1px solid rgba(192,120,64,0.1);pointer-events:none;"></div>
-  <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;">
+  <div style="position:relative;z-index:1;max-width:680px;margin:0 auto;">
     <div style="display:flex;align-items:center;justify-content:center;gap:0.875rem;margin-bottom:1.75rem;" class="rev">
       <div style="width:32px;height:1px;background:#C07840;"></div>
-      <span style="font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:#C07840;font-weight:700;">Reserve Your Spot</span>
+      <span class="eyebrow">Reserve Your Spot</span>
       <div style="width:32px;height:1px;background:#C07840;"></div>
     </div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.25rem,3.75vw,3.75rem);font-weight:400;line-height:1.1;color:#1a1714;margin-bottom:1.5rem;letter-spacing:-0.02em;text-wrap:balance;" class="rev rev-d1">
-      Your next appointment<br/><em>is one call away</em>
+    <h2 class="h-display rev rev-d1" style="font-size:clamp(2.25rem,4vw,4rem);margin-bottom:1.5rem;text-wrap:balance;">
+      Your next appointment<br/><span class="accent">is one call away</span>
     </h2>
-    <p style="font-size:1rem;line-height:1.75;color:#4A3D35;margin-bottom:2.75rem;font-weight:400;" class="rev rev-d2">
+    <p style="font-size:1.0625rem;line-height:1.75;color:#4A3D35;margin-bottom:2.75rem;font-weight:400;" class="rev rev-d2">
       Walk-ins always welcome — but a quick call guarantees your time.<br/>Open 7 days a week.
     </p>
     <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;" class="rev rev-d3">
-      <a href="tel:+19098867123" style="display:inline-flex;align-items:center;gap:0.75rem;background:#1a1714;color:#F9F6F2;font-size:1.125rem;font-weight:400;letter-spacing:0.04em;font-family:'Cormorant Garamond',serif;padding:1.125rem 2.875rem;border-radius:2px;text-decoration:none;transition:background 0.25s,transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.background='#C07840';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(192,120,64,0.35)'" onmouseout="this.style.background='#1a1714';this.style.transform='none';this.style.boxShadow='none'">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="tel:+19098867123" style="display:inline-flex;align-items:center;gap:0.75rem;background:#1a1714;color:#F9F6F2;font-size:1.0625rem;font-weight:700;letter-spacing:0.02em;padding:1.125rem 2.875rem;border-radius:2px;text-decoration:none;transition:background 0.25s,transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.background='#C07840';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(192,120,64,0.35)'" onmouseout="this.style.background='#1a1714';this.style.transform='none';this.style.boxShadow='none'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         (909) 886-7123
       </a>
       <span style="font-size:0.85rem;color:#7A6960;font-weight:500;">Mon–Sat 9:30 AM–7 PM &nbsp;·&nbsp; Sun 10 AM–5 PM</span>
@@ -496,47 +565,47 @@
     <div id="foot-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.07);">
       <div>
         <div style="margin-bottom:1.375rem;">
-          <span style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:#F9F6F2;letter-spacing:0.04em;display:block;">Fantastic</span>
-          <span style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#C07840;font-weight:700;">Nail Salon</span>
+          <span style="font-size:1.4rem;font-weight:800;color:#F9F6F2;letter-spacing:-0.02em;display:block;">Fantastic</span>
+          <span style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#C07840;font-weight:700;display:block;margin-top:3px;">Nail Salon</span>
         </div>
-        <p style="font-size:0.875rem;line-height:1.75;color:rgba(249,246,242,0.5);max-width:30ch;margin-bottom:1.5rem;font-weight:400;">San Bernardino's home for precision nail care and results that last.</p>
-        <a href="tel:+19098867123" style="font-size:0.9rem;color:#C07840;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#EAD0B8'" onmouseout="this.style.color='#C07840'">
+        <p style="font-size:0.9rem;line-height:1.75;color:rgba(249,246,242,0.55);max-width:30ch;margin-bottom:1.5rem;font-weight:400;">San Bernardino's home for precision nail care and results that last.</p>
+        <a href="tel:+19098867123" style="font-size:0.9rem;color:#C07840;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-weight:700;transition:color 0.2s;" onmouseover="this.style.color='#EAD0B8'" onmouseout="this.style.color='#C07840'">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           (909) 886-7123
         </a>
       </div>
       <div>
-        <div style="font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.35);font-weight:700;margin-bottom:1.375rem;">Pages</div>
+        <div style="font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.4);font-weight:700;margin-bottom:1.375rem;">Pages</div>
         <div style="display:flex;flex-direction:column;gap:0.9rem;">
-          <a href="index.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Home</a>
-          <a href="about.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">About</a>
-          <a href="services.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Services</a>
-          <a href="gallery.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Gallery</a>
-          <a href="contact.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Contact</a>
+          <a href="index.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Home</a>
+          <a href="about.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">About</a>
+          <a href="services.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Services</a>
+          <a href="gallery.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Gallery</a>
+          <a href="contact.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Contact</a>
         </div>
       </div>
       <div>
-        <div style="font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.35);font-weight:700;margin-bottom:1.375rem;">Services</div>
+        <div style="font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.4);font-weight:700;margin-bottom:1.375rem;">Services</div>
         <div style="display:flex;flex-direction:column;gap:0.9rem;">
-          <a href="services.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Manicures</a>
-          <a href="services.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Pedicures</a>
-          <a href="services.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Gel &amp; Acrylic</a>
-          <a href="services.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Nail Art</a>
-          <a href="services.html" style="font-size:0.875rem;color:rgba(249,246,242,0.6);text-decoration:none;font-weight:400;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.6)'">Eyebrow Waxing</a>
+          <a href="services.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Manicures</a>
+          <a href="services.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Pedicures</a>
+          <a href="services.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Gel &amp; Acrylic</a>
+          <a href="services.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Nail Art</a>
+          <a href="services.html" style="font-size:0.9rem;color:rgba(249,246,242,0.65);text-decoration:none;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#C07840'" onmouseout="this.style.color='rgba(249,246,242,0.65)'">Eyebrow Waxing</a>
         </div>
       </div>
       <div>
-        <div style="font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.35);font-weight:700;margin-bottom:1.375rem;">Visit Us</div>
-        <p style="font-size:0.875rem;color:rgba(249,246,242,0.6);line-height:1.75;margin-bottom:1.5rem;font-weight:400;">1566 E Highland Ave<br/>San Bernardino, CA 92404</p>
+        <div style="font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.4);font-weight:700;margin-bottom:1.375rem;">Visit Us</div>
+        <p style="font-size:0.9rem;color:rgba(249,246,242,0.65);line-height:1.75;margin-bottom:1.5rem;font-weight:500;">1566 E Highland Ave<br/>San Bernardino, CA 92404</p>
         <div style="display:flex;flex-direction:column;gap:0.45rem;">
-          <div style="display:flex;justify-content:space-between;font-size:0.8rem;font-weight:400;"><span style="color:rgba(249,246,242,0.38);">Mon – Sat</span><span style="color:rgba(249,246,242,0.7);">9:30 AM – 7 PM</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:0.8rem;font-weight:400;"><span style="color:rgba(249,246,242,0.38);">Sunday</span><span style="color:rgba(249,246,242,0.7);">10 AM – 5 PM</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.825rem;font-weight:500;"><span style="color:rgba(249,246,242,0.4);">Mon – Sat</span><span style="color:rgba(249,246,242,0.75);">9:30 AM – 7 PM</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.825rem;font-weight:500;"><span style="color:rgba(249,246,242,0.4);">Sunday</span><span style="color:rgba(249,246,242,0.75);">10 AM – 5 PM</span></div>
         </div>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding-top:1.875rem;flex-wrap:wrap;gap:1rem;">
-      <span style="font-size:0.75rem;color:rgba(249,246,242,0.25);font-weight:400;">&copy; 2025 Fantastic Nail Salon · San Bernardino, CA</span>
-      <span style="font-size:0.75rem;color:rgba(249,246,242,0.25);font-weight:400;">1566 E Highland Ave · (909) 886-7123</span>
+      <span style="font-size:0.75rem;color:rgba(249,246,242,0.3);font-weight:500;">&copy; 2025 Fantastic Nail Salon · San Bernardino, CA</span>
+      <span style="font-size:0.75rem;color:rgba(249,246,242,0.3);font-weight:500;">1566 E Highland Ave · (909) 886-7123</span>
     </div>
   </div>
 </footer>
