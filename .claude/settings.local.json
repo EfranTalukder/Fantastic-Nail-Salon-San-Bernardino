@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:images.pexels.com)",
+      "WebFetch(domain:burst.shopify.com)"
+    ]
+  }
+}

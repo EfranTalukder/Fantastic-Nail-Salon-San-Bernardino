@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fantastic Nail Salon — San Bernardino, CA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #f9f6f2; color: #1a1714; font-family: 'DM Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 999; pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    /* NAV */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 1.5rem 5vw;
+      transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(249,246,242,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 1rem 5vw;
+      border-bottom: 1px solid rgba(192,158,125,0.12);
+      box-shadow: 0 2px 20px rgba(122,92,62,0.06);
+    }
+    .nav-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { text-decoration: none; line-height: 1; }
+    .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; color: #1a1714; letter-spacing: 0.05em; display: block; }
+    .nav-logo-sub { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #c09e7d; font-weight: 500; display: block; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; }
+    .nav-link { font-size: 0.775rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; color: #776b61; text-decoration: none; position: relative; transition: color 0.25s; }
+    .nav-link::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: #c09e7d; transition: width 0.3s cubic-bezier(0.16,1,0.3,1); }
+    .nav-link:hover, .nav-link.active { color: #1a1714; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .btn-call {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #c09e7d; color: #fff; font-size: 0.775rem; letter-spacing: 0.07em;
+      text-transform: uppercase; font-weight: 500; padding: 0.6rem 1.25rem;
+      border-radius: 2px; text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      border: 1px solid transparent;
+    }
+    .btn-call:hover { background: #a8845f; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(168,132,95,0.28); }
+    .btn-call:active { transform: scale(0.98); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+
+    /* REVEAL */
+    .rev { opacity: 0; transform: translateY(24px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+    .rev.in { opacity: 1; transform: none; }
+    .rev-d1 { transition-delay: 0.1s; }
+    .rev-d2 { transition-delay: 0.22s; }
+    .rev-d3 { transition-delay: 0.38s; }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow: hidden; background: #1a1714; padding: 0.875rem 0; }
+    .marquee-track { display: flex; width: max-content; animation: mq 30s linear infinite; }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+    @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* IMAGE ZOOM */
+    .img-z { overflow: hidden; }
+    .img-z img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); display: block; width: 100%; height: 100%; object-fit: cover; }
+    .img-z:hover img { transform: scale(1.045); }
+
+    /* SERVICE ROW */
+    .svc-row { border-bottom: 1px solid rgba(192,158,125,0.18); padding: 1.2rem 0; transition: padding-left 0.3s; cursor: default; }
+    .svc-row:hover { padding-left: 0.6rem; }
+
+    /* TESTIMONIAL SCROLL */
+    .testi-scroll { display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; }
+    .testi-scroll::-webkit-scrollbar { display: none; }
+    .testi-card { flex: 0 0 320px; background: #fff; border: 1px solid rgba(192,158,125,0.14); border-radius: 3px; padding: 1.75rem; box-shadow: 0 6px 28px rgba(122,92,62,0.05); }
+
+    /* MOBILE MENU */
+    #mob-menu { display: none; position: fixed; inset: 0; z-index: 45; background: #f9f6f2; padding: 6rem 2rem 2rem; flex-direction: column; }
+    #mob-menu.open { display: flex; }
+    body.no-scroll { overflow: hidden; }
+
+    @media (max-width: 767px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: block; }
+      #hero { grid-template-columns: 1fr !important; }
+      #hero-img { height: 55vw; }
+      #hero-img .hero-blend { background: linear-gradient(to bottom, #f9f6f2 0%, transparent 25%) !important; }
+      #svc-grid { grid-template-columns: 1fr !important; }
+      #phil-grid { grid-template-columns: 1fr !important; }
+      #gal-grid { grid-template-columns: 1fr 1fr !important; }
+      #foot-grid { grid-template-columns: 1fr 1fr !important; }
+      .testi-card { flex: 0 0 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Fantastic</span>
+      <span class="nav-logo-sub">Nail Salon · San Bernardino</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="tel:+19098867123" class="btn-call nav-cta">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (909) 886-7123
+      </a>
+      <button class="hamburger" onclick="toggleMob()" aria-label="Menu">
+        <svg id="hbIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1714" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-menu">
+  <div style="display:flex;flex-direction:column;gap:2rem;flex:1;">
+    <a href="index.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:#1a1714;text-decoration:none;">Home</a>
+    <a href="about.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:#1a1714;text-decoration:none;">About</a>
+    <a href="services.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:#1a1714;text-decoration:none;">Services</a>
+    <a href="gallery.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:#1a1714;text-decoration:none;">Gallery</a>
+    <a href="contact.html" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:#1a1714;text-decoration:none;">Contact</a>
+  </div>
+  <div style="border-top:1px solid rgba(192,158,125,0.2);padding-top:1.75rem;">
+    <a href="tel:+19098867123" class="btn-call" style="font-size:0.875rem;padding:0.875rem 1.5rem;">Call to Book · (909) 886-7123</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" style="display:grid;grid-template-columns:1fr 1fr;min-height:100dvh;overflow:hidden;">
+  <!-- Left -->
+  <div style="display:flex;flex-direction:column;justify-content:center;padding:9rem 4rem 5rem 5vw;position:relative;z-index:2;">
+    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:2.25rem;" class="rev">
+      <div style="width:28px;height:1px;background:#c09e7d;"></div>
+      <span style="font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:#c09e7d;font-weight:500;">San Bernardino, CA · Est. Since</span>
+    </div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.75rem,4.5vw,5rem);font-weight:300;line-height:1.06;letter-spacing:-0.02em;color:#1a1714;margin-bottom:1.75rem;" class="rev rev-d1">
+      The Nail Salon<br/>
+      <em style="font-style:italic;">San Bernardino</em><br/>
+      Keeps Coming Back To
+    </h1>
+    <p style="font-size:0.9375rem;line-height:1.78;color:#776b61;max-width:40ch;margin-bottom:2.75rem;" class="rev rev-d2">
+      174 five-star clients know why. Precision technique, a beautifully reimagined interior, and technicians who care about your nails long after you walk out the door.
+    </p>
+    <div style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;" class="rev rev-d3">
+      <a href="tel:+19098867123" class="btn-call" style="font-size:0.875rem;padding:0.9rem 1.75rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call to Reserve
+      </a>
+      <a href="services.html" style="font-size:0.775rem;letter-spacing:0.08em;text-transform:uppercase;color:#1a1714;text-decoration:none;border-bottom:1px solid rgba(26,23,20,0.28);padding-bottom:2px;transition:all 0.25s;" onmouseover="this.style.color='#c09e7d';this.style.borderColor='#c09e7d'" onmouseout="this.style.color='#1a1714';this.style.borderColor='rgba(26,23,20,0.28)'">View Services</a>
+    </div>
+    <!-- Rating -->
+    <div style="margin-top:3rem;display:inline-flex;align-items:center;gap:0.875rem;padding:0.875rem 1.25rem;background:rgba(255,255,255,0.75);border:1px solid rgba(192,158,125,0.18);border-radius:3px;backdrop-filter:blur(8px);width:fit-content;" class="rev rev-d3">
+      <div style="display:flex;gap:2px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <span style="font-size:0.875rem;font-weight:500;color:#1a1714;">4.5</span>
+      <span style="color:rgba(26,23,20,0.25);font-size:0.7rem;">|</span>
+      <span style="font-size:0.8rem;color:#776b61;">174 Google reviews</span>
+    </div>
+  </div>
+  <!-- Right image -->
+  <div id="hero-img" style="position:relative;overflow:hidden;">
+    <img src="https://images.pexels.com/photos/2268404/pexels-photo-2268404.jpeg?auto=compress&cs=tinysrgb&w=1260" alt="Elegantly manicured nails" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+    <div class="hero-blend" style="position:absolute;inset:0;background:linear-gradient(to right,#f9f6f2 0%,transparent 18%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(249,246,242,0.25) 100%);"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div style="display:flex;align-items:center;gap:2.5rem;padding-right:2.5rem;white-space:nowrap;">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Gel Manicure</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">Pedicure</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Acrylic Full Set</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">French Tips</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Nail Art</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">Callus Removal</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Eyebrow Waxing</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">Ombre &amp; 3D Art</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:2.5rem;padding-right:2.5rem;white-space:nowrap;">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Gel Manicure</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">Pedicure</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Acrylic Full Set</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">French Tips</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Nail Art</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">Callus Removal</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#c09e7d;font-style:italic;">Eyebrow Waxing</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:300;letter-spacing:0.1em;color:#eedfd0;">Ombre &amp; 3D Art</span>
+      <span style="color:rgba(192,158,125,0.35);font-size:0.4rem;">&#9670;</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES SECTION -->
+<section style="padding:7rem 5vw;">
+  <div style="max-width:1400px;margin:0 auto;">
+    <div id="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+      <!-- Left -->
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;" class="rev">
+          <div style="width:28px;height:1px;background:#c09e7d;"></div>
+          <span style="font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:#c09e7d;font-weight:500;">What We Do</span>
+        </div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.25vw,3.25rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;color:#1a1714;margin-bottom:1.25rem;" class="rev rev-d1">
+          Every service,<br/><em>done with intention</em>
+        </h2>
+        <p style="font-size:0.9375rem;line-height:1.78;color:#776b61;max-width:44ch;margin-bottom:2.75rem;" class="rev rev-d2">
+          We don't rush. Every appointment gets full attention from prep to polish — because the difference shows, and so does the longevity.
+        </p>
+        <div class="rev rev-d2">
+          <div class="svc-row">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#1a1714;">Gel Manicure</div><div style="font-size:0.775rem;color:#776b61;margin-top:3px;">Long-wearing, chip-free color — up to 3 weeks</div></div>
+              <span style="font-size:0.775rem;color:#c09e7d;white-space:nowrap;margin-left:1rem;">From $35</span>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#1a1714;">Acrylic Full Set</div><div style="font-size:0.775rem;color:#776b61;margin-top:3px;">Sculpted extensions, your choice of shape and length</div></div>
+              <span style="font-size:0.775rem;color:#c09e7d;white-space:nowrap;margin-left:1rem;">From $45</span>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#1a1714;">Callus Removal Pedicure</div><div style="font-size:0.775rem;color:#776b61;margin-top:3px;">Soak, full callus treatment, massage, polish</div></div>
+              <span style="font-size:0.775rem;color:#c09e7d;white-space:nowrap;margin-left:1rem;">From $45</span>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#1a1714;">French Tip Gel Pedicure</div><div style="font-size:0.775rem;color:#776b61;margin-top:3px;">Classic French with a gel finish that holds</div></div>
+              <span style="font-size:0.775rem;color:#c09e7d;white-space:nowrap;margin-left:1rem;">$57</span>
+            </div>
+          </div>
+          <div style="padding:1.2rem 0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#1a1714;">Nail Art &amp; 3D Design</div><div style="font-size:0.775rem;color:#776b61;margin-top:3px;">Florals, ombre, geometric — bring your reference</div></div>
+              <span style="font-size:0.775rem;color:#c09e7d;white-space:nowrap;margin-left:1rem;">Custom</span>
+            </div>
+          </div>
+        </div>
+        <a href="services.html" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:2rem;font-size:0.775rem;letter-spacing:0.1em;text-transform:uppercase;color:#1a1714;text-decoration:none;border-bottom:1px solid rgba(26,23,20,0.22);padding-bottom:2px;transition:all 0.25s;" onmouseover="this.style.color='#c09e7d';this.style.borderColor='#c09e7d'" onmouseout="this.style.color='#1a1714';this.style.borderColor='rgba(26,23,20,0.22)'" class="rev rev-d3">
+          Full services &amp; pricing
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <!-- Right: image with floating stat -->
+      <div style="position:relative;padding-top:2rem;" class="rev rev-d1">
+        <div class="img-z" style="border-radius:3px;aspect-ratio:4/5;">
+          <img src="https://images.pexels.com/photos/7755296/pexels-photo-7755296.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Professional manicure in progress" />
+        </div>
+        <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:#fff;border:1px solid rgba(192,158,125,0.18);padding:1.25rem 1.5rem;border-radius:3px;box-shadow:0 12px 36px rgba(122,92,62,0.1);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#1a1714;line-height:1;">174+</div>
+          <div style="font-size:0.72rem;color:#776b61;margin-top:2px;letter-spacing:0.04em;">Happy clients on Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY / DARK SECTION -->
+<section style="background:#1a1714;padding:7rem 5vw;overflow:hidden;">
+  <div style="max-width:1400px;margin:0 auto;">
+    <div id="phil-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+      <!-- Image left -->
+      <div style="position:relative;" class="rev">
+        <div class="img-z" style="border-radius:3px;aspect-ratio:3/4;">
+          <img src="https://images.pexels.com/photos/4783335/pexels-photo-4783335.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Nail technician applying polish with care" />
+        </div>
+        <div style="position:absolute;top:2rem;right:-1.25rem;background:#c09e7d;color:#fff;padding:1.25rem;border-radius:3px;max-width:155px;text-align:center;">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;font-style:italic;line-height:1.5;">"Tell them what you want and they deliver — amazing results every time"</p>
+          <p style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:0.625rem;opacity:0.8;">— Google Review</p>
+        </div>
+      </div>
+      <!-- Text right -->
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;" class="rev">
+          <div style="width:28px;height:1px;background:#c09e7d;"></div>
+          <span style="font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:#c09e7d;font-weight:500;">Our Standard</span>
+        </div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.25vw,3.25rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;color:#f9f6f2;margin-bottom:1.5rem;" class="rev rev-d1">
+          Good nails take<br/><em>the time they take</em>
+        </h2>
+        <p style="font-size:0.9375rem;line-height:1.8;color:rgba(249,246,242,0.58);margin-bottom:1.25rem;max-width:46ch;" class="rev rev-d2">
+          Under our new ownership, Fantastic Nail Salon has been completely reimagined — the interior, the process, the standard of work. We invested in the space because your experience before the first stroke of polish matters.
+        </p>
+        <p style="font-size:0.9375rem;line-height:1.8;color:rgba(249,246,242,0.58);margin-bottom:2.75rem;max-width:46ch;" class="rev rev-d2">
+          Our clients drive here from across San Bernardino County. Not because we're the closest — because once you've had your nails done right, you don't want to settle for anything less.
+        </p>
+        <a href="about.html" style="display:inline-flex;align-items:center;gap:0.6rem;background:transparent;border:1px solid rgba(192,158,125,0.38);color:#c09e7d;font-size:0.775rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;padding:0.75rem 1.5rem;border-radius:2px;text-decoration:none;transition:all 0.25s;" onmouseover="this.style.background='#c09e7d';this.style.color='#fff';this.style.borderColor='#c09e7d'" onmouseout="this.style.background='transparent';this.style.color='#c09e7d';this.style.borderColor='rgba(192,158,125,0.38)'" class="rev rev-d3">
+          Our Story
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="padding:7rem 0;">
+  <div style="max-width:1400px;margin:0 auto;padding:0 5vw;margin-bottom:3rem;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;" class="rev"><div style="width:28px;height:1px;background:#c09e7d;"></div><span style="font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:#c09e7d;font-weight:500;">Client Words</span></div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.875rem,2.75vw,2.75rem);font-weight:300;color:#1a1714;letter-spacing:-0.02em;" class="rev rev-d1">What our clients say</h2>
+      </div>
+      <span style="font-size:0.775rem;color:#776b61;letter-spacing:0.04em;" class="rev">4.5 stars · 174 reviews</span>
+    </div>
+  </div>
+  <div style="padding:0 5vw;">
+    <div class="testi-scroll rev">
+      <div class="testi-card">
+        <div style="display:flex;gap:2px;margin-bottom:1.25rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.65;color:#1a1714;margin-bottom:1.5rem;">"I love this place — super clean and the staff is amazing. The calm environment and the great prices make it my go-to. Won't go anywhere else."</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:34px;height:34px;border-radius:50%;background:#eedfd0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:#c09e7d;font-weight:500;">N</div><div><div style="font-size:0.83rem;font-weight:500;color:#1a1714;">Naomi D.</div><div style="font-size:0.72rem;color:#776b61;">Google Review</div></div></div>
+      </div>
+      <div class="testi-card" style="background:#c09e7d;border-color:#c09e7d;">
+        <div style="display:flex;gap:2px;margin-bottom:1.25rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.65;color:#fff;margin-bottom:1.5rem;">"I've been coming to Wee and Kim for years and followed them here. Just tell them what you want — they will deliver amazing results, great prices, fantastic service every single time."</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:#fff;font-weight:500;">W</div><div><div style="font-size:0.83rem;font-weight:500;color:#fff;">W. Walker</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.7);">Long-time Client</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div style="display:flex;gap:2px;margin-bottom:1.25rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.65;color:#1a1714;margin-bottom:1.5rem;">"$57 for French tip gel toes with callus removal pedicure — and my feet feel incredible. Under new management and the inside looks beautiful now. This is my place."</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:34px;height:34px;border-radius:50%;background:#eedfd0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:#c09e7d;font-weight:500;">N</div><div><div style="font-size:0.83rem;font-weight:500;color:#1a1714;">Naomis Dream</div><div style="font-size:0.72rem;color:#776b61;">Google · 3 months ago</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div style="display:flex;gap:2px;margin-bottom:1.25rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#c09e7d"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.65;color:#1a1714;margin-bottom:1.5rem;">"Great price and excellent service. Overly happy with my full set and pedicure. The attention to detail is real — not rushed, not generic. My nails looked exactly how I imagined."</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:34px;height:34px;border-radius:50%;background:#eedfd0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:#c09e7d;font-weight:500;">R</div><div><div style="font-size:0.83rem;font-weight:500;color:#1a1714;">Rachel M.</div><div style="font-size:0.72rem;color:#776b61;">Google Review</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY TEASER -->
+<section style="padding:0 5vw 7rem;">
+  <div style="max-width:1400px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.25rem;flex-wrap:wrap;gap:1rem;">
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.75rem,2.5vw,2.5rem);font-weight:300;color:#1a1714;letter-spacing:-0.02em;" class="rev">Recent Work</h2>
+      <a href="gallery.html" style="font-size:0.775rem;letter-spacing:0.1em;text-transform:uppercase;color:#776b61;text-decoration:none;border-bottom:1px solid rgba(119,107,97,0.28);padding-bottom:2px;transition:all 0.25s;" onmouseover="this.style.color='#c09e7d';this.style.borderColor='#c09e7d'" onmouseout="this.style.color='#776b61';this.style.borderColor='rgba(119,107,97,0.28)'" class="rev">View full gallery</a>
+    </div>
+    <div id="gal-grid" style="display:grid;grid-template-columns:1.65fr 1fr 1fr;grid-template-rows:auto auto;gap:0.6rem;" class="rev rev-d1">
+      <div class="img-z" style="grid-row:span 2;border-radius:3px;aspect-ratio:3/4;"><img src="https://images.pexels.com/photos/4965824/pexels-photo-4965824.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Nail art design" /></div>
+      <div class="img-z" style="border-radius:3px;aspect-ratio:1.15/1;"><img src="https://images.pexels.com/photos/3997384/pexels-photo-3997384.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gel manicure" /></div>
+      <div class="img-z" style="border-radius:3px;aspect-ratio:1.15/1;"><img src="https://images.pexels.com/photos/2600287/pexels-photo-2600287.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nail art" /></div>
+      <div class="img-z" style="border-radius:3px;aspect-ratio:1.15/1;"><img src="https://images.pexels.com/photos/4677846/pexels-photo-4677846.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Manicure service" /></div>
+      <div class="img-z" style="border-radius:3px;aspect-ratio:1.15/1;"><img src="https://images.pexels.com/photos/7755554/pexels-photo-7755554.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pedicure result" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING CTA -->
+<section style="background:#f0e8de;padding:6rem 5vw;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(192,158,125,0.18);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-100px;left:-60px;width:380px;height:380px;border-radius:50%;border:1px solid rgba(192,158,125,0.12);pointer-events:none;"></div>
+  <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1.75rem;" class="rev">
+      <div style="width:28px;height:1px;background:#c09e7d;"></div>
+      <span style="font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:#c09e7d;font-weight:500;">Reserve Your Spot</span>
+      <div style="width:28px;height:1px;background:#c09e7d;"></div>
+    </div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.25rem,3.75vw,3.75rem);font-weight:300;line-height:1.1;color:#1a1714;margin-bottom:1.5rem;letter-spacing:-0.02em;" class="rev rev-d1">
+      Your next appointment<br/><em>is one call away</em>
+    </h2>
+    <p style="font-size:0.9375rem;line-height:1.75;color:#776b61;margin-bottom:2.75rem;" class="rev rev-d2">
+      Walk-ins always welcome — but a quick call guarantees your time.<br/>Open 7 days a week.
+    </p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;" class="rev rev-d3">
+      <a href="tel:+19098867123" style="display:inline-flex;align-items:center;gap:0.75rem;background:#1a1714;color:#f9f6f2;font-size:1.0625rem;font-weight:300;letter-spacing:0.04em;padding:1.125rem 2.75rem;border-radius:2px;text-decoration:none;transition:all 0.25s;" onmouseover="this.style.background='#c09e7d';this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 28px rgba(192,158,125,0.32)'" onmouseout="this.style.background='#1a1714';this.style.transform='none';this.style.boxShadow='none'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (909) 886-7123
+      </a>
+      <span style="font-size:0.8rem;color:#776b61;">Mon–Sat 9:30 AM–7 PM &nbsp;·&nbsp; Sun 10 AM–5 PM</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#1a1714;padding:4.5rem 5vw 2.5rem;">
+  <div style="max-width:1400px;margin:0 auto;">
+    <div id="foot-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="margin-bottom:1.25rem;"><span style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:#f9f6f2;letter-spacing:0.05em;display:block;">Fantastic</span><span style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#c09e7d;font-weight:500;">Nail Salon</span></div>
+        <p style="font-size:0.83rem;line-height:1.75;color:rgba(249,246,242,0.42);max-width:30ch;margin-bottom:1.5rem;">San Bernardino's home for precision nail care and results that last.</p>
+        <a href="tel:+19098867123" style="font-size:0.875rem;color:#c09e7d;text-decoration:none;display:flex;align-items:center;gap:0.5rem;transition:color 0.2s;" onmouseover="this.style.color='#eedfd0'" onmouseout="this.style.color='#c09e7d'">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (909) 886-7123
+        </a>
+      </div>
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.3);font-weight:500;margin-bottom:1.25rem;">Pages</div>
+        <div style="display:flex;flex-direction:column;gap:0.875rem;">
+          <a href="index.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Home</a>
+          <a href="about.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">About</a>
+          <a href="services.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Services</a>
+          <a href="gallery.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Gallery</a>
+          <a href="contact.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.3);font-weight:500;margin-bottom:1.25rem;">Services</div>
+        <div style="display:flex;flex-direction:column;gap:0.875rem;">
+          <a href="services.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Manicures</a>
+          <a href="services.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Pedicures</a>
+          <a href="services.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Gel &amp; Acrylic</a>
+          <a href="services.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Nail Art</a>
+          <a href="services.html" style="font-size:0.85rem;color:rgba(249,246,242,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c09e7d'" onmouseout="this.style.color='rgba(249,246,242,0.55)'">Eyebrow Waxing</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(249,246,242,0.3);font-weight:500;margin-bottom:1.25rem;">Visit Us</div>
+        <p style="font-size:0.83rem;color:rgba(249,246,242,0.55);line-height:1.7;margin-bottom:1.5rem;">1566 E Highland Ave<br/>San Bernardino, CA 92404</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;"><span style="color:rgba(249,246,242,0.35);">Mon – Sat</span><span style="color:rgba(249,246,242,0.6);">9:30 AM – 7 PM</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;"><span style="color:rgba(249,246,242,0.35);">Sunday</span><span style="color:rgba(249,246,242,0.6);">10 AM – 5 PM</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:1.75rem;flex-wrap:wrap;gap:1rem;">
+      <span style="font-size:0.72rem;color:rgba(249,246,242,0.22);">&copy; 2025 Fantastic Nail Salon · San Bernardino, CA</span>
+      <span style="font-size:0.72rem;color:rgba(249,246,242,0.22);">1566 E Highland Ave · (909) 886-7123</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+  function toggleMob() {
+    const m = document.getElementById('mob-menu');
+    m.classList.toggle('open');
+    document.body.classList.toggle('no-scroll');
+  }
+  const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
